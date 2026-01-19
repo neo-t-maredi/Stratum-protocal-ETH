@@ -1,66 +1,90 @@
-## Foundry
+# ⛰️ Stratum Protocol
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+> Commodity-backed stablecoin using MakerDAO-style CDP mechanics
 
-Foundry consists of:
+Built for **ETH Riyadh 2026** by Neo Sibiya
 
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+---
 
-## Documentation
+## What Is This?
 
-https://book.getfoundry.sh/
+Stratum Protocol lets you deposit tokenized oil barrels and borrow a stablecoin (sUSD) against them.
 
-## Usage
+**Think of it like a mortgage:**
+- Your collateral = Oil tokens  
+- Your loan = sUSD stablecoin  
+- The protocol = Smart contracts managing everything  
 
-### Build
+**Key Rule:** You must maintain 150% collateralization at all times.
 
-```shell
-$ forge build
+---
+
+## Quick Example
+
+1. **Alice deposits 10 OIL tokens** (worth $750 at $75/barrel)
+2. **Alice borrows 400 sUSD** (ratio: $750/$400 = 187.5% ✓)
+3. **Oil price crashes to $50/barrel** → collateral now worth $500
+4. **Ratio drops to 125%** (below 130% liquidation threshold)
+5. **Bob liquidates Alice** → pays 400 sUSD, receives all 10 OIL ($500 value)
+6. Bob profits $100, system stays solvent
+
+---
+
+## Architecture
+```
+OilCollateral.sol    → ERC20 token (1 token = 1 barrel)
+StratumStable.sol    → sUSD stablecoin (ERC20)
+MockPriceFeed.sol    → Simulates Chainlink oracle
+StratumVault.sol     → Core CDP engine
 ```
 
-### Test
+---
 
-```shell
-$ forge test
+## Key Parameters
+
+- **Minimum Collateral Ratio:** 150%
+- **Liquidation Threshold:** 130%
+- **Liquidation Incentive:** Full collateral (natural arbitrage)
+
+---
+
+## Running Tests
+```bash
+forge test -vvv
 ```
 
-### Format
+**All 4 tests pass:**
+- ✅ Deposit and mint sUSD
+- ✅ Cannot mint beyond ratio
+- ✅ Burn debt and withdraw collateral
+- ✅ Liquidation after price crash
 
-```shell
-$ forge fmt
-```
+---
 
-### Gas Snapshots
+## Tech Stack
 
-```shell
-$ forge snapshot
-```
+- Solidity 0.8.19
+- Foundry
+- OpenZeppelin Contracts
+- Chainlink Price Feeds (mocked for testing)
 
-### Anvil
+---
 
-```shell
-$ anvil
-```
+## Why "Stratum"?
 
-### Deploy
+In geology, a stratum is a layer of rock where oil is extracted. Each layer of the protocol provides structural integrity - surface (user interface), subsurface (vault mechanics), foundation (price oracles).
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+---
 
-### Cast
+## Next Steps
 
-```shell
-$ cast <subcommand>
-```
+- [ ] Deploy to Sepolia testnet
+- [ ] Build frontend demo
+- [ ] Integrate real Chainlink WTI/USD feed
+- [ ] Production security audit
 
-### Help
+---
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+**Built by Neo Maredi**  
+Industrial Automation Engineer → Blockchain Developer  
+ETH Riyadh 2026
