@@ -1,8 +1,8 @@
-# ⛰️ Stratum Protocol
+# Stratum Protocol
 
 > Commodity-backed stablecoin using MakerDAO-style CDP mechanics
 
-Built for **ETH Riyadh 2026** by Neo Sibiya
+Built for **ETH Riyadh 2026** by Neo Maredi
 
 ---
 
