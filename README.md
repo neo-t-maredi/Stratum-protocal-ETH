@@ -85,6 +85,18 @@ In geology, a stratum is a layer of rock where oil is extracted. Each layer of t
 
 ---
 
+## Live on Sepolia Testnet
+
+**Deployed Contracts:**
+- OilCollateral: [`0x113a6D4D1Bec8f2632A2cAB7A469851fC8B5eCC3`](https://sepolia.etherscan.io/address/0x113a6D4D1Bec8f2632A2cAB7A469851fC8B5eCC3)
+- StratumStable: [`0x5C59f6941F418E55D35008334270Cc8dE57f4d8d`](https://sepolia.etherscan.io/address/0x5C59f6941F418E55D35008334270Cc8dE57f4d8d)
+- StratumVault: [`0x5Ec12C85837439d409A550D4e7c22D950EE2148E`](https://sepolia.etherscan.io/address/0x5Ec12C85837439d409A550D4e7c22D950EE2148E)
+- MockPriceFeed: [`0x383f83abb034EdC76B778e05f0e20D4E0E107CaA`](https://sepolia.etherscan.io/address/0x383f83abb034EdC76B778e05f0e20D4E0E107CaA)
+
+**Deployment Block:** 10106099  
+**Network:** Sepolia Testnet  
+**Status:** ✅ Live and Verified
+
 **Built by Neo Maredi**  
 Industrial Automation Engineer → Blockchain Developer  
 ETH Riyadh 2026
