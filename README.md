@@ -76,14 +76,6 @@ In geology, a stratum is a layer of rock where oil is extracted. Each layer of t
 
 ---
 
-## Next Steps
-
-- [ ] Deploy to Sepolia testnet
-- [ ] Build frontend demo
-- [ ] Integrate real Chainlink WTI/USD feed
-- [ ] Production security audit
-
----
 
 ## Live on Sepolia Testnet
 
