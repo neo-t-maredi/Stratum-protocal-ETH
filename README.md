@@ -12,6 +12,8 @@ cat > README.md << 'EOF'
 
 ## Overview
 
+![Stratum Protocol Interface](./assets/stratum-screenshot.png)
+
 Stratum Protocol enables users to deposit tokenized oil barrels as collateral and mint sUSD stablecoin. Built on MakerDAO's Collateralized Debt Position (CDP) model, Stratum brings real-world commodity backing to decentralized finance.
 
 **Key Innovation:** Access instant liquidity from physical oil reserves without selling the underlying asset - like a mortgage for your oil holdings.
