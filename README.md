@@ -1,7 +1,7 @@
-cd ~/foundry-f25/stratum-protocol
+
 
 # Create a professional README
-cat > README.md << 'EOF'
+
 # Stratum Protocol
 
 > Oil-backed stablecoin using CDP mechanics - Commodity-backed DeFi for real-world assets
