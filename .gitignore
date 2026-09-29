@@ -1,19 +1,15 @@
-# Compiler files
+# Generated build output and local dependencies
 cache/
 out/
+node_modules/
+dist/
+*.tsbuildinfo
 
-# Ignores development broadcast logs
-!/broadcast
+# Local credentials and deployment logs
+.env
+.env.*
+!.env.example
 /broadcast/*/31337/
 /broadcast/**/dry-run/
 
-# Docs
-docs/
-
-# Dotenv file
-.env
-.env
-.env
-.env
-*.png
 generate_qr.py

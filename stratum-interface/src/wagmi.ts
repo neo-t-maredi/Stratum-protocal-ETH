@@ -1,22 +1,22 @@
 import { http, createConfig } from 'wagmi'
+import { injected } from 'wagmi/connectors'
 import { sepolia } from 'wagmi/chains'
-import { getDefaultConfig } from '@rainbow-me/rainbowkit'
+import { zeroAddress } from 'viem'
 
-export const config = getDefaultConfig({
-  appName: 'Stratum Protocol',
-  projectId: '2f8a97914452f8cf69d97b41ae7a8db8',  // Same one from UGPT
+export const config = createConfig({
   chains: [sepolia],
-  transports: {
-    [sepolia.id]: http('https://eth-sepolia.g.alchemy.com/v2/dEsaXci3hjaxTdOQMlCl6'),
-  },
+  connectors: [injected()],
+  transports: { [sepolia.id]: http() },
 })
 
-// Deployed contract addresses
+// Historical addresses are deliberately not connected to the revised UI.
+// Keep writes disabled until a corrected deployment has been validated.
+export const CONTRACTS_READY = false
 export const CONTRACTS = {
-  OilCollateral: '0x113a6D4D1Bec8f2632A2cAB7A469851fC8B5eCC3' as `0x${string}`,
-  StratumVault: '0x5Ec12C85837439d409A550D4e7c22D950EE2148E' as `0x${string}`,
-  StratumStable: '0x5C59f6941F418E55D35008334270Cc8dE57f4d8d' as `0x${string}`,
-  MockPriceFeed: '0x383f83abb034EdC76B778e05f0e20D4E0E107CaA' as `0x${string}`,
+  OilCollateral: zeroAddress,
+  StratumVault: zeroAddress,
+  StratumStable: zeroAddress,
+  MockPriceFeed: zeroAddress,
 }
 
 // Simplified ABIs
