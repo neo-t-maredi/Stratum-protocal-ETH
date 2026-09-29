@@ -3,34 +3,37 @@ pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-/**
- * @title StratumStable
- * @notice The sUSD stablecoin - oil-backed stable token
- * @dev Minted when users deposit collateral, burned when debt is repaid
- * 
- * WHAT THIS IS:
- * This is the stablecoin users receive when they deposit OIL collateral.
- * Think of it like borrowing against your house - you lock up OIL, get sUSD.
- * 
- * SECURITY NOTE:
- * In production, only the vault should be able to mint.
- * For demo simplicity, we're leaving it open.
- * TODO: Add access control before mainnet deployment.
- */
+/// @notice Demonstration debt token. Only the configured vault can issue sUSD.
 contract StratumStable is ERC20 {
-    
-    constructor() ERC20("Stratum Stable", "sUSD") {}
-    
-    /// @notice Mint new sUSD tokens
-    /// @param to Address receiving tokens
-    /// @param amount Amount to mint (18 decimals)
-    /// @dev In production, restrict this to vault only
+    address public immutable deployer;
+    address public vault;
+
+    error NotDeployer();
+    error VaultAlreadySet();
+    error InvalidVault();
+    error NotVault();
+
+    event VaultConfigured(address indexed vault);
+
+    constructor() ERC20("Stratum Stable", "sUSD") {
+        deployer = msg.sender;
+    }
+
+    /// @notice Bind the vault once, after both contracts have been deployed.
+    function setVault(address newVault) external {
+        if (msg.sender != deployer) revert NotDeployer();
+        if (vault != address(0)) revert VaultAlreadySet();
+        if (newVault.code.length == 0) revert InvalidVault();
+        vault = newVault;
+        emit VaultConfigured(newVault);
+    }
+
     function mint(address to, uint256 amount) external {
+        if (msg.sender != vault) revert NotVault();
         _mint(to, amount);
     }
-    
-    /// @notice Burn sUSD tokens (anyone can burn their own)
-    /// @param amount Amount to burn (18 decimals)
+
+    /// @notice Burn the caller's own balance; the vault uses this for repayment.
     function burn(uint256 amount) external {
         _burn(msg.sender, amount);
     }
